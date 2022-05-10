@@ -4,15 +4,13 @@ const fs = require("fs")
 
 const path = require("path");
 const app = express();
-const group = new ArchiveGroup('./productos.json')
 
-let rawData = fs.readFileSync('productos.json');
-let productsRandom = JSON.parse(rawData);
-let randomNumber = Math.floor(Math.random() * productsRandom.length);
+const group = new ArchiveGroup('./productos.json')
 
 app.get("/", (req, res)=>{
     res.sendFile(path.join(__dirname + "/index.html"))
 })
+
 
 app.get("/productos", async (req, res) => {
     try {
@@ -23,15 +21,23 @@ app.get("/productos", async (req, res) => {
     }
 });
 
-app.get("/productosRandom", (req, res) => {
-    try {
-        res.json(productsRandom[randomNumber]);
-    } catch(e) {
-        console.log(e);
-        res.sendStatus(500);
-    }
+app.get("/api/productos/:id", async (req, res) => {
+    //llenar
+});
+
+app.post("/api/productos/", async (req, res) => {
+    //llenar
+});
+
+app.put("/api/productos/:id", async (req, res) => {
+    //llenar
+});
+
+app.delete("/api/productos/:id", async (req, res) => {
+    //llenar
 });
 
 app.listen(8080, ()=>{
     console.log("server listening on port", 8080)
 })
+
